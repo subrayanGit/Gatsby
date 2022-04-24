@@ -17,7 +17,7 @@ xhttp.onreadystatechange = function () {
 		
         console.log(xmlDoc.getElementsByTagName("node")); 
 		
-        emailData = '';
+        contentData = '';
         for(let i =0; i < xmlDoc.getElementsByTagName("node").length; i++){
             console.log( xmlDoc.getElementsByTagName("node")[i].childNodes);
             title = xmlDoc.getElementsByTagName("node")[i].childNodes[1].innerHTML;
@@ -31,10 +31,15 @@ xhttp.onreadystatechange = function () {
 			console.log(download);
 			console.log(KeyImage);
 			
-            //emailData += `<p style="line-height:175%"><a href="${xmlDoc.getElementsByTagName("item")[i].childNodes[1].innerHTML}" target="_blank" rel="noopener noreferrer" data-auth="NotApplicable" style="color: rgb(85, 209, 234) !important;" data-linkindex="3" data-ogsc="rgb(0, 164, 189)">${role}</a> ${company}</p>`;
+            contentData += `<tr><td></td>
+							<td>${title}</td>
+							<td>${date}</td>
+							<td>${body}</td>
+							<td>${KeyImage}</td>
+							<td>${download}</td></tr>`;
         }
-        //document.getElementById('tasks-only').innerHTML = emailData;
-
+        document.getElementById('content-data').innerHTML = contentData;
+        document.getElementById('overlay').style.display = 'none';
     }	
 };
 xhttp.open("POST", feedUrl, true);
